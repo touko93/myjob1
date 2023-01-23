@@ -1,0 +1,57 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Acceuil {% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Acceuil</h1>
+            <div class="d-flex">
+            <form method="post" class="d-flex">
+                <input type="text" name="search" class="form-control" placeholder="Rechercher">
+                    <button type="submit" class="btn btn-dark ">
+                        <i data-feather="search"></i>
+                    </button>
+                </form>
+                <a href="{{ path('app_admin_home_new') }}" class="btn btn-success ms-3">
+                    Nouveau
+                        
+                </a>
+            </div>
+    </div>
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Texte</th>
+                <th>Signature</th>
+                <th>IsActive</th>
+                <th class="text_end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for home in homes %}
+            <tr>
+                <td>{{ home.id }}</td>
+                <td>{{ home.titre }}</td>
+                <td>{{ home.texte }}</td>
+                <td>{{ home.signature }}</td>
+                <td>{{ home.isActive ? 'Yes' : 'No' }}</td>
+                <td class="text-end">
+                    <a href="{{ path('app_admin_home_show', {'id': home.id}) }}" class="btn btn-dark btn-sm"><i class="align-middle" data-feather="eye"></i></a>
+                    <a href="{{ path('app_admin_home_edit', {'id': home.id}) }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="edit-3"></i></a>
+                <button class="btn btn-danger btn-sm"><i class="align-middle" data-feather="trash-2"></i></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune entrée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

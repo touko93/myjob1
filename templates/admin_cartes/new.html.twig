@@ -1,0 +1,12 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Nouvelle Carte{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_admin_cartes_index') }}" class="btn btn-primary btn-sm">Retour a la liste</a>
+<h1 class="mt-3">Creer une nouvelle Carte</h1>
+    
+
+    {{ include('admin_cartes/_form.html.twig') }}
+
+{% endblock %}

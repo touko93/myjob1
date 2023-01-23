@@ -1,0 +1,12 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Nouvelle Annonce{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_admin_annonce_index') }}" class="btn btn-primary btn-sm">Retour a la liste</a>
+<h1 class="mt-3">Creer une nouvelle Annonce</h1>
+    
+
+    {{ include('admin_annonce/_form.html.twig') }}
+
+{% endblock %}

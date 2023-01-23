@@ -1,0 +1,75 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Candidat{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between align-items-center">
+<h1>Candidat</h1>
+    <div class="d-flex">
+    <form method="post" class="d-flex">
+        <input type="text" name="search" class="form-control" placeholder="Rechercher">
+            <button type="submit" class="btn btn-dark ">
+                <i data-feather="search"></i>
+            </button>
+        </form>
+        <a href="{{ path('app_admin_candidat_new') }}" class="btn btn-success ms-3">
+            Nouveau
+                
+        </a>
+    </div>
+</div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                {# <th>UpdatedAt</th> #}
+                <th>curriculum-vitea</th>
+                {# <th>Slug</th> #}
+                <th class="text-end">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidat in candidats %}
+            <tr>
+                {# <td>{{ candidat.id }}</td> #}
+                <td>{{ candidat.lastName }}</td>
+                <td>{{ candidat.firstName }}</td>
+                <td>{{ candidat.adres }}</td>
+                <td>{{ candidat.email }}</td>
+                <td>{{ candidat.phone }}</td>
+                {# <td>{{ candidat.updatedAt ? candidat.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+                {# <td>{{ candidat.imageName }}</td> #}
+                    <td>
+                        <a href="{{ asset('images/candidats/' ~ candidat.imageName) }}" data-lightbox="{{ candidat.imageName}}">
+                        <img src="{{ asset('images/candidats/' ~ candidat.imageName) }}" class="img-list" alt="{{ candidat.imageName }}">
+                    </a>
+                </td>
+                <td>{{ candidat.isActive ? 'Yes' : 'No' }}</td>
+                {# <td>{{ candidat.slug }}</td> #}
+                <td class="text-end">
+                <div class="d-flex "> 
+                <a href="{{ path('app_admin_candidat_show', {'id': candidat.id}) }}" class="btn btn-dark btn-sm"><i class="align-middle" data-feather="eye"></i></a>
+                <a href="{{ path('app_admin_candidat_edit', {'id': candidat.id}) }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="edit-3"></i></a>
+                {{ include('admin_candidat/_delete_form.html.twig') }}
+                </div>
+            </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Auccune entrée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+    {{ knp_pagination_render(candidats) }}
+</div>
+
+{% endblock %}

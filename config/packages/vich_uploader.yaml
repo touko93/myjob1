@@ -1,0 +1,28 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: attribute
+
+    mappings:
+        carousels:
+            uri_prefix: /images/carousels
+            upload_destination: '%kernel.project_dir%/public/images/carousels'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        annonces:
+            uri_prefix: /images/annonces
+            upload_destination: '%kernel.project_dir%/public/images/annonces'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            inject_on_load: true
+        formations:
+            uri_prefix: /images/formations
+            upload_destination: '%kernel.project_dir%/public/images/formations'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        compagnys:
+            uri_prefix: /images/compagnys
+            upload_destination: '%kernel.project_dir%/public/images/compagnys'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        candidats:
+            uri_prefix: /images/candidats
+            upload_destination: '%kernel.project_dir%/public/images/candidats'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

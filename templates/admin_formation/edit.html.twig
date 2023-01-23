@@ -1,0 +1,16 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Edit Formations{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_admin_formation_index') }}" class="btn btn-primary btn-sm">Retour a la liste</a>
+<div class="d-flex justify-content-between align-items-center">
+<h1 class="mt-3">Edition Formations</h1>
+
+{{ include('admin_formation/_delete_form.html.twig') }}
+
+</div>
+
+
+{{ include('admin_formation/_form.html.twig', {'button_label': 'Modifier'}) }}
+{% endblock %}

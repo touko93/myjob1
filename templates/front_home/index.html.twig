@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+  <h1>
+    {# {{ contenu.titre }} #}
+  </h1>
+  {% if cartes is not null %}
+    <div class="row">
+      {% for carte in cartes %}
+
+        <div class="col-sm-3">
+          <div class="card card-img-top">
+
+            {# debut du carousel #}
+            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2000">
+                  <img src="{{ asset('images/carousels/' ~ carte.carousel.imageName1) }}" class="d-block w-100" alt="..."></div>
+
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{{ asset('images/carousels/' ~ carte.carousel.imageName2) }}" class="d-block w-100" alt="..."></div>
+                    <div class="carousel-item">
+                      <img src="{{ asset('images/carousels/' ~ carte.carousel.imageName3) }}" class="d-block w-100" alt="..."></div>
+                    </div>
+                  </div>
+                  {# fin du carousel #}
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">
+                      {{ carte.texte }}
+                    </p>
+                    <a href="{{path('app_front_annonce')}}" class="btn btn-outline-info">
+                      {{ carte.titre }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div>
+          {# {{ contenu.texte|raw }} #}
+        </div>
+        <h6>
+          {# {{ contenu.signature }} #}
+        </h6>
+
+      {% endblock %}
+      

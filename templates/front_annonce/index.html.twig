@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Annonces{% endblock %}
+
+{% block body %}
+<h1 class="d-flex justify-content-center py-5">Nos Annonces</h1>
+<section class="d-flex flex-wrap justify-content-center mb-3">
+{% for annonce in annonces %}
+<div class="col-12 col-sm-6 col-md-3 px-2">
+
+<div class="card card-annonce">
+<div class="d-flex justify-content-center">
+<img id="annonce-logo" src="{{ asset('images/annonces/' ~ annonce.imageName) }}"class="card-img-tops" alt="logo {{annonce.imageName}}">
+</div>
+<div class="card-body d-flex flex-wrap justify-content-center">
+    <h5 class="card-title w-100 text-center">
+    {% if annonce.name is not null %}
+    {{ annonce.title}}
+    {% else %}
+        {% set nameDisplay = "" %}
+        {% if annonce.name is not null %}
+        {% set nameDisplay = annonce.name %}
+        {% endif %}
+        {% if annonce.name  is not null %}
+            {% if nameDisplay|length > 0 %}
+            {% set nameDisplay = nameDisplay ~ " " ~ annonce.name  %}
+            {% else %}
+            {% set nameDisplay = annonce.name  %}
+        {% endif %}
+        {% endif %}
+        {{ nameDisplay }}
+{% endif %}
+
+    </h5>
+    <a href="{{path('app_front_show_annonce', {'id': annonce.id})}}" class="btn btn-dark align-self-end">Voir l'annonce</a>
+    </div>
+</div>
+
+</div>    
+{% endfor %}
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(annonces) }}
+</div>
+</section>
+{% endblock %}

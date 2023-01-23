@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ formation.name }}
+{% endblock %}
+{% block body %}
+    {# {{ dump(annonce)}} #}
+    <main class="container shadow p-3 mb-5 rounded bg-white ">
+        <a href="#" class="btn btn-success ms-3">Postuler </a> 
+        <div class= "d-flex justify-content-center">
+        
+            <img id="formation-logo
+            " src="{{ asset('images/formations/' ~ formation.imageName) }}"class="cards-img-top
+            " alt="logo {{formation.imageName}}"></div>
+        
+            <div class= "d-flex justify-content-center">{{ formation.title}}</div>
+                
+            <div> {{ formation.text|raw }}</div>
+            <a href="#" class="btn btn-success ms-3">Postuler </a> 
+
+        </main>
+    {% endblock %}

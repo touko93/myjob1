@@ -1,0 +1,97 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}
+    Annonce index
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>
+            Annonce
+            
+        </h1>
+    <div class="d-flex">
+        <form method="post" class="d-flex">
+                <button id="reset-button" onclick="resetSearch()">Annuler</button>
+            <input type="text" name="search" class="form-control" placeholder="Rechercher">
+                <button type="submit" class="btn btn-dark ">
+                    <i data-feather="search"></i>
+                </button>
+            </form>
+            <a href="{{ path('app_admin_annonce_new') }}" class="btn btn-success ms-3">
+                Nouveau
+                    
+            </a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Annonce
+                </th>
+                <th>
+                    Titre
+                </th>
+                <th>
+                    Logo entreprise
+                </th>
+                <th>
+                    Type de contrat
+                </th>
+                <th class="text-end">
+                    actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for annonce in annonces %}
+                <tr>
+                    <td>
+                        {{ annonce.id }}
+                    </td>
+                    <td>
+                        {{ annonce.text |u.truncate(300) |raw }}...
+                    </td>
+                    <td>
+                        {{ annonce.title }}
+                    </td>
+                    {# <td>{{ annonce.imageName }}</td> #}
+                    <td>
+                        <a href="{{ asset('images/annonces/' ~ annonce.imageName) }}" data-lightbox="{{ annonce.imageName }}">
+                            <img src="{{ asset('images/annonces/' ~ annonce.imageName) }}" class="img-list" alt="{{ annonce.imageName }}"></a>
+                        </td>
+                        <td>
+                            {{ annonce.tag }}
+                        </td>
+                        <td class="text-end">
+                            <div class="d-flex">
+                                <a href="{{ path('app_admin_annonce_show', {'id': annonce.id}) }}" class="btn btn-dark btn-sm">
+                                    <i class="align-middle" data-feather="eye"></i>
+                                </a>
+                                <a href="{{ path('app_admin_annonce_edit', {'id': annonce.id}) }}" class="btn btn-success btn-sm">
+                                    <i class="align-middle" data-feather="edit-3"></i>
+                                </a>
+                                {{ include('admin_annonce/_delete_form.html.twig') }}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">
+                            Aucune entrée touver
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation">
+            {{ knp_pagination_render(annonces) }}
+        </div>
+
+    {% endblock %}
+    

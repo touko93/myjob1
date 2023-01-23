@@ -1,0 +1,42 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_admin_annonce_index') }}" class="btn btn-primary btn-sm mt-3">
+Retour a la Liste
+</a>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ annonce.id }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ annonce.text }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ annonce.title }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ annonce.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Tag</th>
+                <td>{{ annonce.tag }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between align-center">
+    <a href="{{ path('app_admin_annonce_edit', {'id': annonce.id}) }}" class="btn btn-success">
+        <i class="align-middle" data-feather="edit-2"></i>
+    </a>
+
+    {{ include('admin_annonce/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

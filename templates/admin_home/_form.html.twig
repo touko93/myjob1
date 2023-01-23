@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+{# {{ form_widget(form) }} #}
+{{ form_row(form.isActive) }}
+<div class="d-flex fles-wrap">
+    <div class="col-12 col-md-6 px-3">
+    {{ form_row(form.titre) }}
+    </div>
+    <div class="col-12 col-md-6 px-3">
+    {{ form_row(form.signature) }}
+</div>
+</div>
+<div class="px-3">{{ form_row(form.texte) }}</div>
+{% include 'admin_common/_required-fields.html.twig'%}
+<button class="btn btn-success btn-sm mt-3">
+    {{ button_label|default('Sauvegarder') }}
+</button>
+{{ form_end(form) }}

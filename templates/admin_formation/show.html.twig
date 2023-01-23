@@ -1,0 +1,100 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}
+    Formation
+{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_admin_formation_index') }}" class="btn btn-primary btn-sm mt-3">
+    Retour a la Liste
+        
+    
+</a>
+<h1>
+    Formation
+</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>
+                Id
+            </th>
+            <td>
+                {{ formation.id }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Name
+            </th>
+            <td>
+                {{ formation.name }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Adres
+            </th>
+            <td>
+                {{ formation.adres }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                ImageName
+            </th>
+            <td>
+                {{ formation.imageName }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                UpdatedAt
+            </th>
+            <td>
+                {{ formation.updatedAt ? formation.updatedAt|date('Y-m-d H:i:s') : '' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Email
+            </th>
+            <td>
+                {{ formation.email }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Phone
+            </th>
+            <td>
+                {{ formation.phone }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Category
+            </th>
+            <td>
+                {{ formation.text }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Slug
+            </th>
+            <td>
+                {{ formation.title }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-between align-center">
+    <a href="{{ path('app_admin_formation_edit', {'id': formation.id}) }}" class="btn btn-success">
+        <i class="align-middle" data-feather="edit-2"></i>
+    </a>
+
+    {{ include('admin_formation/_delete_form.html.twig') }}
+</div>
+{% endblock %}

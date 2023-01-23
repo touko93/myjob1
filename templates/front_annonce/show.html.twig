@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ annonce.name }}
+{% endblock %}
+{% block body %}
+    {# {{ dump(annonce)}} #}
+    <main class="container shadow p-3 mb-5 rounded bg-white ">
+        <a href="#" class="btn btn-success ms-3">Postuler </a> 
+        <div class= "d-flex justify-content-center">
+        
+            <img id="annonce-logo
+            " src="{{ asset('images/annonces/' ~ annonce.imageName) }}"class="cards-img-top
+            " alt="logo {{annonce.imageName}}"></div>
+        
+            <div class= "d-flex justify-content-center">{{ annonce.title }}</div>
+                
+            <div> {{ annonce.text|raw }}</div>
+            <a href="#" class="btn btn-success ms-3">Postuler </a> 
+
+        </main>
+    {% endblock %}
+    

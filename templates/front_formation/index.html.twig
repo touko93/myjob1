@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Formations{% endblock %}
+
+{% block body %}
+<h1 class="d-flex justify-content-center py-5">Nos Formations</h1>
+<section class="d-flex flex-wrap justify-content-center mb-3">
+{% for formation in formations %}
+<div class="col-12 col-sm-6 col-md-3 px-2">
+
+<div class="card card-formation">
+<div class="d-flex justify-content-center">
+<img id="formation-logo" src="{{ asset('images/formations/' ~ formation.imageName) }}"class="card-img-tops" alt="logo {{formation.imageName}}">
+</div>
+<div class="card-body d-flex flex-wrap justify-content-center">
+    <h5 class="card-title w-100 text-center">
+    {% if formation.name is not null %}
+    {{ formation.title}}
+    {% else %}
+        {% set nameDisplay = "" %}
+        {% if formation.name is not null %}
+        {% set nameDisplay = formation.name %}
+        {% endif %}
+        {% if formation.name  is not null %}
+            {% if nameDisplay|length > 0 %}
+            {% set nameDisplay = nameDisplay ~ " " ~ formation.name  %}
+            {% else %}
+            {% set nameDisplay = formation.name  %}
+        {% endif %}
+        {% endif %}
+        {{ nameDisplay }}
+{% endif %}
+
+    </h5>
+    <a href="{{path('app_front_show_formation', {'id': formation.id})}}" class="btn btn-dark align-self-end">Voir</a>
+    </div>
+</div>
+
+</div>    
+{% endfor %}
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(formations) }}
+</div>
+</section>
+{% endblock %}
